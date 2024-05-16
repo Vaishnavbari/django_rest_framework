@@ -7,6 +7,10 @@ from django.views.decorators.csrf import csrf_exempt
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework.views import APIView
+
+
+
+# Function based view 
 @csrf_exempt
 @api_view(["GET","POST","PUT","DELETE"])
 def api_flow(request,id=None):
