@@ -20,9 +20,12 @@ from app import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+
+    # Function based url
     path("student/",views.api_flow),
     path("student/<int:id>",views.api_flow),
-    # path("insert/",views.api_flow),
-    # path("update/",views.api_flow),
-    # path("delete/",views.api_flow),
+
+    # class based url 
+    path("student_class/",views.students.as_view()),
+    path("student_class/<int:id>",views.students.as_view()),
 ]
