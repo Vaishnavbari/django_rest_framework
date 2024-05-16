@@ -28,4 +28,13 @@ urlpatterns = [
     # class based url 
     path("student_class/",views.students.as_view()),
     path("student_class/<int:id>",views.students.as_view()),
+
+    # Generic apiview 
+
+    path("stundent_generic_view/",views.student_genericapi.as_view()),
+    path("stundent_generic_view/<int:pk>",views.student_genericapi_toget.as_view()),
+
+    # crud in one operation
+    path("crud/",views.create_operation.as_view()),
+    path("read_update_delete/<int:pk>",views.crud_operation.as_view()),
 ]

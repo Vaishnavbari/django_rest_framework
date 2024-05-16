@@ -7,6 +7,8 @@ from django.views.decorators.csrf import csrf_exempt
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework.views import APIView
+from rest_framework.generics import GenericAPIView,RetrieveUpdateDestroyAPIView,CreateAPIView
+from rest_framework.mixins import ListModelMixin,UpdateModelMixin,DestroyModelMixin,CreateModelMixin,RetrieveModelMixin
 
 # Function based view 
 @csrf_exempt
@@ -86,3 +88,40 @@ class students(APIView):
          user.delete()
          return Response({"data":"user deleted"})
         
+# Genericapiview and Mixins 
+
+class student_genericapi(GenericAPIView,ListModelMixin,UpdateModelMixin,RetrieveModelMixin,CreateModelMixin,DestroyModelMixin):
+    queryset=student.objects.all()
+    serializer_class=strudentSerializer
+
+    def get(self,request):
+        return self.list(request)
+    
+    def post(self,request):
+        return self.create(request)
+    
+
+
+class student_genericapi_toget(GenericAPIView,ListModelMixin,UpdateModelMixin,RetrieveModelMixin,CreateModelMixin,DestroyModelMixin):
+    queryset=student.objects.all()
+    serializer_class=strudentSerializer
+    
+    def put(self,request,*args, **kwargs):
+        return self.update(request)
+     
+    def get(self,request,*args, **kwargs):
+       return self.retrieve(request)
+    
+    def delete(self,request,*args, **kwargs):
+       return self.delete(request)
+    
+
+
+# create api view and retrieveupdateapiview
+class create_operation(CreateAPIView):
+    queryset=student.objects.all()
+    serializer_class=strudentSerializer
+
+class crud_operation(RetrieveUpdateDestroyAPIView):
+    queryset=student.objects.all()
+    serializer_class=strudentSerializer
