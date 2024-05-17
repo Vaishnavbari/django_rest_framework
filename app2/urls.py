@@ -16,25 +16,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path,include
-from app import views
+from app2 import views
+from rest_framework.routers import DefaultRouter 
+
+router=DefaultRouter()
+router.register("emplyee",views.employee_viewset,basename="emlpoyee")
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path("",include("app2.urls")),
-    # Function based url
-    path("student/",views.api_flow),
-    path("student/<int:id>",views.api_flow),
-
-    # class based url 
-    path("student_class/",views.students.as_view()),
-    path("student_class/<int:id>",views.students.as_view()),
-
-    # Generic apiview 
-
-    path("stundent_generic_view/",views.student_genericapi.as_view()),
-    path("stundent_generic_view/<int:pk>",views.student_genericapi_toget.as_view()),
-
-    # crud in one operation
-    path("crud/",views.create_operation.as_view()),
-    path("read_update_delete/<int:pk>",views.crud_operation.as_view()),
+   path("",include(router.urls))
 ]
