@@ -77,4 +77,12 @@ class employee_viewset(viewsets.ViewSet):
      
      
 
-    
+class employeemodel_viewset(viewsets.ModelViewSet):
+    queryset=employee.objects.all()
+    serializer_class=employee_serializer
+
+
+
+class employee_readonly_model_viewset(viewsets.ReadOnlyModelViewSet):
+    queryset=employee.objects.all()
+    serializer_class=employee_serializer

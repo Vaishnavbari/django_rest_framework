@@ -21,7 +21,11 @@ from rest_framework.routers import DefaultRouter
 
 router=DefaultRouter()
 router.register("emplyee",views.employee_viewset,basename="emlpoyee")
+router.register("emplyee_modelviewset",views.employeemodel_viewset,basename="employeemodel_viewset")
+router.register("employee_readonly_model_viewset",views.employee_readonly_model_viewset,basename="employee_readonly_model_viewset")
+
+
 
 urlpatterns = [
-   path("",include(router.urls))
+   path("",include(router.urls)),
 ]
